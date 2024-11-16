@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gyanavi_academy/views/compo/course_details.dart';
 import 'package:gyanavi_academy/views/home/components/drawer.dart';
 import '../../bloc/home_state.dart';
 import '../../models/category.dart';
 import '../../repository/home_repository.dart';
-import '../course/course_details.dart';
+//import '../course/course_details.dart';
 import 'components/home_header.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -82,7 +83,7 @@ class HomeScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CourseDetailsScreen(course: course),
+              builder: (context) => CourseInfoScreen(),
             ),
           );
         },
@@ -111,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                     fit: BoxFit.cover,
                     imageErrorBuilder: (context, error, stackTrace) {
                       return Image.asset(
-                        'assets/24747255_6997673.jpg', // Error image
+                        'assets/25523520_trend_watching_16.jpg', // Error image
                         fit: BoxFit.cover,
                       );
                     },

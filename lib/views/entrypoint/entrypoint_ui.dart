@@ -40,7 +40,7 @@ class _EntryPointUIState extends State<EntryPointUI> {
   /// All the pages
   List<Widget> pages = [
      HomeScreen(),
-     ContentScreen(),
+     MyClassesScreen(),
     SettingsScreen(),
     HelpScreen(),
     Profile(),

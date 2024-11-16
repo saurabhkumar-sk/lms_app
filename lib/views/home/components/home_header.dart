@@ -9,9 +9,9 @@ class Header extends StatefulWidget {
 
 class _HeaderState extends State<Header> {
   final List<String> imageList = [
-    'assets/close-up-kid-learning-online.jpg',
-    'assets/6854037.jpg',
-    'assets/girl-learns-play-piano-with-teacher-online-remote-learning-music.jpg',
+    'assets/25523520_trend_watching_16.jpg',
+    'assets/10782685_19197877.jpg',
+    'assets/8106205_63618-2.jpg',
   ];
 
   int _currentIndex = 0;
