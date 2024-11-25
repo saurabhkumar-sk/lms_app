@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Classwix',
       theme: AppTheme.defaultTheme,
       onGenerateRoute: RouteGenerator.onGenerate,
-      initialRoute: AppRoutes.entryPoint,
+      initialRoute: AppRoutes.splash,
     );
   }
 }

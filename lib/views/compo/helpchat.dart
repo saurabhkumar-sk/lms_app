@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:gyanavi_academy/views/compo/theme.dart';
-
-
 
 class HelpScreen extends StatefulWidget {
   @override
@@ -10,15 +8,26 @@ class HelpScreen extends StatefulWidget {
 }
 
 class _HelpScreenState extends State<HelpScreen> {
-  @override
-  void initState() {
-    super.initState();
+  final String phoneNumber = '9707709694'; // Replace with your WhatsApp number
+
+  Future<void> _openWhatsApp() async {
+    final Uri whatsappUri = Uri.parse('https://wa.me/$phoneNumber');
+    if (await canLaunchUrl(whatsappUri)) {
+      await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Could not open WhatsApp.'),
+        ),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isLightMode = brightness == Brightness.light;
+
     return Container(
       color: isLightMode ? AppTheme.nearlyWhite : AppTheme.nearlyBlack,
       child: SafeArea(
@@ -48,7 +57,7 @@ class _HelpScreenState extends State<HelpScreen> {
               Container(
                 padding: const EdgeInsets.only(top: 16),
                 child: Text(
-                  'It looks like you are experiencing problems\nwith our sign up process. We are here to\nhelp so please get in touch with us',
+                  'It looks like you are experiencing problems\nwith our sign-up process. We are here to\nhelp so please get in touch with us.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 16,
@@ -76,7 +85,7 @@ class _HelpScreenState extends State<HelpScreen> {
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: _openWhatsApp,
                           child: Center(
                             child: Padding(
                               padding: const EdgeInsets.all(4.0),
@@ -84,8 +93,7 @@ class _HelpScreenState extends State<HelpScreen> {
                                 'Chat with Us',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  color:
-                                  isLightMode ? Colors.white : Colors.black,
+                                  color: isLightMode ? Colors.white : Colors.black,
                                 ),
                               ),
                             ),

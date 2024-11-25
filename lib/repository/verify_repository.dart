@@ -1,11 +1,12 @@
 // repositories/otp_repository.dart
 import 'dart:convert';
+import 'package:gyanavi_academy/constants.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/verification.dart';
 
 class OtpRepository {
-  final String apiUrl = "https://yourapi.com/verify-otp"; // Replace with your API URL
+  final String apiUrl = "$mainUrl/verify-otp"; // Replace with your API URL
 
   Future<bool> verifyOtp(OtpVerificationModel otpData) async {
     try {
@@ -31,10 +32,9 @@ class OtpRepository {
 
 
 class ResetPasswordRepository {
-  final String _baseUrl = 'http://192.168.143.149:8000/api'; // Adjust based on your setup
 
   Future<String> resetPassword(ResetPasswordModel model) async {
-    final url = Uri.parse('$_baseUrl/reset-password');
+    final url = Uri.parse('$mainUrl/reset-password');
     final headers = {'Content-Type': 'application/json'};
     final body = jsonEncode(model.toJson());
 
@@ -66,8 +66,8 @@ void resetUserPassword() async {
 
   try {
     final message = await repository.resetPassword(resetModel);
-    print(message); // Password reset successfully.
+    print(message);
   } catch (e) {
-    print(e); // Error message if password reset fails.
+    print(e);
   }
 }

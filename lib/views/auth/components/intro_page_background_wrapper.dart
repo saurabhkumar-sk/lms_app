@@ -13,7 +13,7 @@ class IntroLoginBackgroundWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _IntroLoginBody(
-      image: const AssetImage('assets/close-up-kid-learning-online.jpg'),
+      image: const AssetImage('assets/female-student-choosing-course-distance-learn.jpg'),
     );
   }
 }

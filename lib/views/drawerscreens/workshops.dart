@@ -6,7 +6,7 @@ class WorkshopScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Music Workshops'),
-        backgroundColor: Color(0xFF002666),
+        backgroundColor: Color(0xFF6833FF),
         elevation: 0,
         centerTitle: true,
         actions: [
@@ -261,7 +261,7 @@ class WorkshopCard extends StatelessWidget {
           onPressed: () {},
           child: Text('Join Now'),
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF002666),
+            backgroundColor: Color(0xFF6833FF),
           ),
         )
             : null,

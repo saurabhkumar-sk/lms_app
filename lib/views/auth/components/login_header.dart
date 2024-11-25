@@ -14,10 +14,10 @@ class LoginPageHeader extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.3,
+          width: MediaQuery.of(context).size.width * 0.7, // Increased the width
           child: AspectRatio(
             aspectRatio: 1 / 1,
-            child: Image.asset('assets/JPEG-1221.jpg'), // Updated with your asset path
+            child: Image.asset('assets/JPEG-1222.jpg'), // Updated with your asset path
           ),
         ),
         Text(
@@ -28,11 +28,11 @@ class LoginPageHeader extends StatelessWidget {
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
         Text(
-          'Classwix',
+          'CLASSWiX',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
+            fontWeight: FontWeight.bold,
+            color: AppColors.primary,
+          ),
         )
       ],
     );

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gyanavi_academy/views/auth/password_reset_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/components/app_back_button.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_defaults.dart';
 import '../../core/routes/app_routes.dart';
 import '../../repository/reset.dart';
-
 
 class ForgetPasswordPage extends StatefulWidget {
   const ForgetPasswordPage({super.key});
@@ -16,7 +17,8 @@ class ForgetPasswordPage extends StatefulWidget {
 
 class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   final TextEditingController _phoneController = TextEditingController();
-  final OtpRepository _otpRepository = OtpRepository();  // Initialize the repository
+  final OtpRepository _otpRepository =
+  OtpRepository(); // Initialize the repository
   bool _isLoading = false;
 
   // Method to handle sending the OTP
@@ -26,7 +28,8 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
     });
 
     // Call the resendOtp method from the repository with the phone number
-    final response = await _otpRepository.resendOtp(_phoneController.text.trim());
+    final response =
+    await _otpRepository.resendOtp(_phoneController.text.trim());
 
     setState(() {
       _isLoading = false;
@@ -38,16 +41,18 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
         SnackBar(content: Text(response.error!)),
       );
     } else {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('phoneNumber', _phoneController.text.trim());
+
       // Navigate to the password reset screen on success
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(response.message)),
       );
-      Navigator.pushNamed(
-        context,
-        AppRoutes.passwordReset,
-        arguments: _phoneController.text,
-      );
-
+      // Navigator.pushNamed(
+      //   context,
+      //   AppRoutes.passwordReset,
+      //   arguments: _phoneController.text,
+      // );
     }
   }
 
@@ -113,7 +118,19 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: _isLoading ? null : _sendOtp,  // Disable button if loading
+                        onPressed: () {
+                          _isLoading
+                              ? null
+                              : _sendOtp().then((val) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PasswordResetPage(
+                                    phoneNumber: _phoneController.text,
+                                  ),
+                                ));
+                          });
+                        }, // Disable button if loading
                         child: _isLoading
                             ? const CircularProgressIndicator(
                           color: Colors.white,

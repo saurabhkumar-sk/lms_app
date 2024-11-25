@@ -21,7 +21,7 @@ class _HeaderState extends State<Header> {
     return Column(
       children: [
         AppBar(
-          backgroundColor: Color(0xFF002666), // Primary color from AppColors
+          backgroundColor: Color(0xFF6833FF), // Primary color from AppColors
           elevation: 0,
           title: Text(
             'Classwix',

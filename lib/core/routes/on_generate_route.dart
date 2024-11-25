@@ -42,13 +42,13 @@ class RouteGenerator {
 
       case AppRoutes.numberVerification:
         return CupertinoPageRoute(
-            builder: (_) => const NumberVerificationPage());
+            builder: (_) =>  NumberVerificationPage());
 
       case AppRoutes.forgotPassword:
         return CupertinoPageRoute(builder: (_) => const ForgetPasswordPage());
 
       case AppRoutes.passwordReset:
-        return CupertinoPageRoute(builder: (_) => const PasswordResetPage());
+        return CupertinoPageRoute(builder: (_) =>  PasswordResetPage());
       case AppRoutes.home:
         return CupertinoPageRoute(builder: (_) =>  HomeScreen());
       case AppRoutes.splash:

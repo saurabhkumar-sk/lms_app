@@ -29,7 +29,7 @@ class AppBottomNavigationBar extends StatelessWidget {
             onTap: () => onNavTap(0),
           ),
           BottomAppBarItem(
-            name: 'My Courses',
+            name: 'My Classes',
             iconLocation: AppIcons.menu,
             isActive: currentIndex == 1,
             onTap: () => onNavTap(1),
@@ -43,8 +43,8 @@ class AppBottomNavigationBar extends StatelessWidget {
             onTap: () => onNavTap(3),
           ),
           BottomAppBarItem(
-            name: 'Profile',
-            iconLocation: AppIcons.profile,
+            name: 'Downloads',
+            iconLocation: AppIcons.profilePayment,
             isActive: currentIndex == 4,
             onTap: () => onNavTap(4),
           ),

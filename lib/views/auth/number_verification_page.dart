@@ -1,20 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first, library_private_types_in_public_api
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gyanavi_academy/constants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:gyanavi_academy/constants.dart';
 
 import '../../core/components/network_image copy.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_defaults.dart';
 import '../../core/constants/app_images.dart';
 import '../../core/themes/app_themes.dart';
-import 'dialogs/verified_dialogs.dart';
 
+// ignore: must_be_immutable
 class NumberVerificationPage extends StatefulWidget {
-  const NumberVerificationPage({super.key});
+  String? phoneNumber;
+  NumberVerificationPage({
+    super.key,
+    this.phoneNumber,
+  });
 
   @override
   _NumberVerificationPageState createState() => _NumberVerificationPageState();
@@ -25,52 +33,54 @@ class _NumberVerificationPageState extends State<NumberVerificationPage> {
   final TextEditingController _otpController2 = TextEditingController();
   final TextEditingController _otpController3 = TextEditingController();
   final TextEditingController _otpController4 = TextEditingController();
-  String? phoneNumber;
+  // String? phoneNumber;
 
   @override
   void initState() {
     super.initState();
-    _getPhoneNumber();
+    // _getPhoneNumber();
   }
 
   // Retrieve the phone number from SharedPreferences
-  Future<void> _getPhoneNumber() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      phoneNumber = prefs.getString('phone_number');
-    });
-  }
+  // Future<void> _getPhoneNumber() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     phoneNumber = prefs.getString('phone_number');
+  //   });
+  // }
+
   Future<void> verifyOtp() async {
-    String otp = _otpController1.text + _otpController2.text + _otpController3.text + _otpController4.text;
-    print('Concatenated OTP: $otp');  // Log OTP to ensure it's correct
+    String otp = _otpController1.text +
+        _otpController2.text +
+        _otpController3.text +
+        _otpController4.text;
+    print('Concatenated OTP: $otp'); // Log OTP to ensure it's correct
 
-    if (otp.length == 4 && phoneNumber != null) {
-      print('Sending OTP: $otp to $phoneNumber');  // Log the OTP and phone number
+    // if (otp.length == 4 && phoneNumber != null) {
+    log('Sending OTP: $otp to ${widget.phoneNumber}'); // Log the OTP and phone number
 
-      try {
-        final response = await http.post(
-          Uri.parse('$mainUrl/verify'),  // API endpoint
-          headers: {'Content-Type': 'application/json'},
-          body: json.encode({'phone': phoneNumber, 'otp': otp}),
-        );
+    try {
+      final response = await http.post(
+        Uri.parse('$mainUrl/verify'), // API endpoint
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({'phone': widget.phoneNumber, 'otp': otp}),
+      );
 
-        print('Response status: ${response.statusCode}');  // Log response status
-        print('Response body: ${response.body}');  // Log response body
+      print('Response status: ${response.statusCode}'); // Log response status
+      print('Response body: ${response.body}'); // Log response body
 
-        if (response.statusCode == 200) {
-          Fluttertoast.showToast(msg: 'Phone verified successfully');
-          // Navigate to next screen
-        } else {
-          Fluttertoast.showToast(msg: 'Invalid OTP');
-        }
-      } catch (e) {
-        print('Error sending OTP request: $e'); // Log any errors
-        Fluttertoast.showToast(msg: 'Error sending OTP request');
+      if (response.statusCode == 200) {
+        Fluttertoast.showToast(msg: 'Phone verified successfully');
+        // Navigate to next screen
+      } else {
+        Fluttertoast.showToast(msg: 'Invalid OTP');
       }
+    } catch (e) {
+      print('Error sending OTP request: $e'); // Log any errors
+      Fluttertoast.showToast(msg: 'Error sending OTP request');
+      // }
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +123,7 @@ class _NumberVerificationPageState extends State<NumberVerificationPage> {
     );
   }
 }
+
 class VerifyButton extends StatelessWidget {
   final Function() onPressed;
   const VerifyButton({required this.onPressed, super.key});
@@ -131,7 +142,6 @@ class VerifyButton extends StatelessWidget {
     );
   }
 }
-
 
 class ResendButton extends StatelessWidget {
   const ResendButton({super.key});
@@ -212,7 +222,10 @@ class OTPTextFields extends StatelessWidget {
                 }
               },
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.bold),
               inputFormatters: [
                 LengthLimitingTextInputFormatter(1),
                 FilteringTextInputFormatter.digitsOnly,
@@ -233,7 +246,10 @@ class OTPTextFields extends StatelessWidget {
                 }
               },
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.bold),
               inputFormatters: [
                 LengthLimitingTextInputFormatter(1),
                 FilteringTextInputFormatter.digitsOnly,
@@ -254,7 +270,10 @@ class OTPTextFields extends StatelessWidget {
                 }
               },
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.bold),
               inputFormatters: [
                 LengthLimitingTextInputFormatter(1),
                 FilteringTextInputFormatter.digitsOnly,
@@ -275,7 +294,10 @@ class OTPTextFields extends StatelessWidget {
                 }
               },
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.bold),
               inputFormatters: [
                 LengthLimitingTextInputFormatter(1),
                 FilteringTextInputFormatter.digitsOnly,

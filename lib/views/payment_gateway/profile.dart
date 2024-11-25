@@ -33,7 +33,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
-        backgroundColor: Color(0xFF002666),  // Primary color from theme
+        backgroundColor: Color(0xFF6833FF),  // Primary color from theme
       ),
       body: SingleChildScrollView(
         child: Padding(

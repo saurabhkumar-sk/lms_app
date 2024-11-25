@@ -36,7 +36,7 @@ class SignupRepository {
         await prefs.setString('email', obj.data?.user?.email ?? "");
         await prefs.setString('name', obj.data?.user?.name ?? "");
         await prefs.setString('phone', obj.data?.user?.phone ?? "");
-        await prefs.setInt('id', obj.data?.user?.id ?? 0);
+        await prefs.setInt('userId', obj.data?.user?.id ?? 0);
 
         return ApiResponse(
           httpCode: response.statusCode,

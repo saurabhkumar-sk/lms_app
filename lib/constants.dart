@@ -15,4 +15,4 @@ const double kDefaultPadding = 20.0;
 
 
 // lib/constants.dart
-const String mainUrl = "http://192.168.174.149:8000/api";
+const String mainUrl = "https://api.classwix.com/api";

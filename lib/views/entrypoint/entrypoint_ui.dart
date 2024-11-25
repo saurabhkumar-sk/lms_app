@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gyanavi_academy/views/Classes/class_content.dart';
 import 'package:gyanavi_academy/views/Classes/myclasses.dart';
+import 'package:gyanavi_academy/views/compo/downloas.dart';
 import 'package:gyanavi_academy/views/compo/helpchat.dart';
 import 'package:gyanavi_academy/views/course/my_courses_screen.dart';
 import 'package:gyanavi_academy/views/drawerscreens/bookmarks.dart';
@@ -40,10 +41,10 @@ class _EntryPointUIState extends State<EntryPointUI> {
   /// All the pages
   List<Widget> pages = [
      HomeScreen(),
-     MyClassesScreen(),
+     ContentScreen(),
     SettingsScreen(),
     HelpScreen(),
-    Profile(),
+    DownloadsScreen(),
   ];
 
   @override

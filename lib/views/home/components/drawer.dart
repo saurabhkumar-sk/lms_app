@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gyanavi_academy/views/compo/syllabus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart'; // New import for URL launcher
 
@@ -112,6 +113,14 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
             ),
             _buildDrawerItem(
+              icon: Icons.book,
+              text: 'Syllabus',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DownloadSyllabusScreen()),
+              ),
+            ),
+            _buildDrawerItem(
               icon: Icons.settings,
               text: 'Settings',
               onTap: () => Navigator.push(
@@ -123,7 +132,7 @@ class _AppDrawerState extends State<AppDrawer> {
             Center(
               child: TextButton.icon(
                 onPressed: () {
-                  _dialPhoneNumber('912269719938'); // Replace with your contact number
+                  _dialPhoneNumber('+912269719938'); // Replace with your contact number
                 },
                 icon: Icon(Icons.contact_mail, color: AppColors.primary),
                 label: Text(
@@ -141,28 +150,28 @@ class _AppDrawerState extends State<AppDrawer> {
                     icon: FaIcon(FontAwesomeIcons.facebook),
                     color: Colors.black,
                     onPressed: () {
-                      _launchURL('https://www.facebook.com'); // Replace with your Facebook URL
+                      _launchURL('https://www.facebook.com/classwix?mibextid=ZbWKwL'); // Replace with your Facebook URL
                     },
                   ),
                   IconButton(
                     icon: FaIcon(FontAwesomeIcons.xTwitter),
                     color: Colors.black,
                     onPressed: () {
-                      _launchURL('https://openai.com/index/chatgpt/'); // Replace with your Twitter URL
+                      _launchURL('https://x.com/Classwix_App?t=Yn_5l7BlnmzNBljwX1dAAw&s=09'); // Replace with your Twitter URL
                     },
                   ),
                   IconButton(
                     icon: FaIcon(FontAwesomeIcons.instagram),
                     color: Colors.black,
                     onPressed: () {
-                      _launchURL('https://www.instagram.com/yourprofile'); // Replace with your Instagram URL
+                      _launchURL('https://www.facebook.com/classwix?mibextid=ZbWKwL'); // Replace with your Instagram URL
                     },
                   ),
                   IconButton(
                     icon: FaIcon(FontAwesomeIcons.youtube),
                     color: Colors.black,
                     onPressed: () {
-                      _launchURL('https://www.youtube.com/yourchannel'); // Replace with your YouTube URL
+                      _launchURL('http://www.youtube.com/@classwix'); // Replace with your YouTube URL
                     },
                   ),
                 ],
